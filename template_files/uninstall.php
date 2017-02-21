@@ -10,7 +10,13 @@
  * @package    {package_name}
  */
 
-// If uninstall not called from WordPress, then exit.
-if ( ! defined( 'WP_UNINSTALL_PLUGIN' ) ) {
-	exit;
+namespace {plugin_name}_plugin;
+function uninstall_{plugin_name}() {
+    if ( ! defined( 'WP_UNINSTALL_PLUGIN' ) )
+	    return false;
+    //Do some custom stuff here
+    
+    return true;
 }
+
+uninstall_{plugin_name}();
