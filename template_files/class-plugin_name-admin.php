@@ -32,7 +32,7 @@ class {plugin_name}_Admin {
     public function validate($input) {
         $valid = array();
         $valid['{plugin_name}_action'] = (isset($input['{plugin_name}_action']) && !empty($input['{plugin_name}_action'])) ? 1 : 0;
-        $valid['brett_filter'] = (isset($input['brett_filter']) && !empty($input['brett_filter'])) ? 1: 0;
+        $valid['{plugin_name}_filter'] = (isset($input['{plugin_name}_filter']) && !empty($input['{plugin_name}_filter'])) ? 1: 0;
 
         return $valid;
     }

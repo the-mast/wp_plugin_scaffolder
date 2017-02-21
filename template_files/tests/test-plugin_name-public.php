@@ -17,11 +17,11 @@ class test_{plugin_name}_public extends TestCase {
         $this->assertEquals(0,${plugin_name}->{plugin_name}_action());
 	}
 
-	function test_brett_filter_shouldInclude{plugin_name}Action() {
+	function test_{plugin_name}_filter_shouldInclude{plugin_name}Action() {
         $options = array();
-        $options["brett_filter"] = 1;
+        $options["{plugin_name}_filter"] = 1;
         ${plugin_name} = new {plugin_name}_public("{plugin_name}", "1.0.0", $options);
-        $this->assertEquals(1, ${plugin_name}->brett_filter());
+        $this->assertEquals(1, ${plugin_name}->{plugin_name}_filter());
 	}
 
 	function test_load_stylesShouldCall_wp_enqueue_style() {
