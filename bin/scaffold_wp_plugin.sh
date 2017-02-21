@@ -7,7 +7,6 @@ plugin_uri="www.thoughtworks.com/abc"
 version="1.0.0"
 author="Brett"
 author_uri="www.thoughtworks.com"
-plugin_uri=`echo $plugin_uri | sed s/\//\\\//g`
 
 template_dir=` dirname \`dirname $0\` `"/template_files"
 plugin_dir="`pwd`/$plugin_name"
@@ -50,6 +49,18 @@ function fix_filenames() {
 function remove_backup_files() {
 find . -name "*.bkp" -exec rm -f "{}" ";"
 }
+
+function sed_esc() {
+    echo "$1" | sed s/"\/"/"\\\\\/"/g | sed s/"&"/"\\\&"/g
+}
+
+plugin_name=`sed_esc $plugin_name`
+packge_name=`sed_esc $package_name`
+link=`sed_esc $link`
+plugin_uri=`sed_esc $plugin_uri`
+version=`sed_esc $version`
+author=`sed_esc $author`
+author_uri=`sed_esc $author_uri`
 
 fix_filenames
 do_subs
