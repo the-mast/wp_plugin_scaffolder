@@ -25,9 +25,9 @@ class {plugin_name}_Public {
         return 0;
     }
 
-    public function brett_filter() {
-        if(!empty($this->{plugin_name}_options["brett_filter"])){
-            return include_once("partials/brett-filter.php");
+    public function {plugin_name}_filter() {
+        if(!empty($this->{plugin_name}_options["{plugin_name}_filter"])){
+            return include_once("partials/{plugin_name}-filter.php");
         }
 
         return 0;
