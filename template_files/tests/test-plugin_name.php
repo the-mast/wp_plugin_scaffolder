@@ -1,10 +1,6 @@
 <?php
 namespace {plugin_name}_plugin;
-$defined_value = false;
-function defined() {
-    global $defined_value;
-    return $defined_value;
-}
+require_once "mocks.php";
 
 use PHPUnit\Framework\TestCase;
 set_plugin_basename("{plugin_name}");
