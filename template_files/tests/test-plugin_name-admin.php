@@ -36,6 +36,12 @@ class test_{plugin_name}_admin extends TestCase {
         $this->assertEquals(1, ${plugin_name}->display_plugin_setup_page());
 	}
 
+	function test_options_updateShouldRegisterACallToRegister_setting() {
+        ${plugin_name} = new {plugin_name}_admin("{plugin_name}", "{version}" );
+        ${plugin_name}->options_update();
+        $this->assertTrue(expect("register_setting")->to_have_been_called()->to_be_truthy() );
+	}
+
 	function test_load_stylesShouldCall_wp_enqueue_style() {
         ${plugin_name} = new {plugin_name}_admin("{plugin_name}", "{version}");
         ${plugin_name}->load_styles();
