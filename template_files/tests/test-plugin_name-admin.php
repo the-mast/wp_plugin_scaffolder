@@ -54,4 +54,40 @@ class test_{plugin_name}_admin extends TestCase {
         $this->assertTrue(expect("wp_enqueue_script")->to_have_been_called_with("{plugin_name}", plugin_dir_path() . "js/{plugin_name}-admin.js", array("jquery"), "1.0.0", false)->to_be_truthy() );
     }
 
+    function test_validateShouldReturnAllKnownOptions() {
+        $options = array();
+        $options["{plugin_name}_action"]=true;
+        $options["{plugin_name}_filter"]=true;
+        ${plugin_name} = new {plugin_name}_admin("{plugin_name}", "1.0.0");
+        $validated_options = ${plugin_name}->validate($options);
+        $this->assertEquals(1,$validated_options["{plugin_name}_action"]);
+        $this->assertEquals(1, $validated_options["{plugin_name}_filter"] );
+    }
+
+    function test_validateShouldReturnActionOption() {
+        $options = array();
+        $options["{plugin_name}_action"]=true;
+        ${plugin_name} = new {plugin_name}_admin("{plugin_name}", "1.0.0");
+        $validated_options = ${plugin_name}->validate($options);
+        $this->assertEquals(1, $validated_options["{plugin_name}_action"] );
+        $this->assertEquals(0, $validated_options["{plugin_name}_filter"] );
+    }
+
+    function test_validateShouldReturnFilterOption() {
+        $options = array();
+        $options["{plugin_name}_filter"]=true;
+        ${plugin_name} = new {plugin_name}_admin("{plugin_name}", "1.0.0");
+        $validated_options = ${plugin_name}->validate($options);
+        $this->assertEquals(0,$validated_options["{plugin_name}_action"]);
+        $this->assertEquals(1, $validated_options["{plugin_name}_filter"] );
+    }
+
+    function test_validateShouldReturnAnEmptySet() {
+        $options = array();
+        $options["{plugin_name}_junk"]=true;
+        ${plugin_name} = new {plugin_name}_admin("{plugin_name}", "1.0.0");
+        $validated_options = ${plugin_name}->validate($options);
+        $this->assertEquals(0,$validated_options["{plugin_name}_action"]);
+        $this->assertEquals(0, $validated_options["{plugin_name}_filter"] );
+    }
 }
