@@ -42,10 +42,10 @@ class {plugin_name}_Admin {
     }
 
 	public function load_styles() {
-		wp_enqueue_style( $this->plugin_name, plugin_dir_path( __FILE__ ) . 'css/{plugin_name}-public.css', array(), $this->version, 'all' );
+		wp_enqueue_style( $this->plugin_name, plugin_dir_path( __FILE__ ) . 'css/{plugin_name}-admin.css', array(), $this->version, 'all' );
 	}
 
 	public function load_scripts() {
-		wp_enqueue_script( $this->plugin_name, plugin_dir_path( __FILE__ ) . 'js/{plugin_name}-public.js', array( 'jquery' ), $this->version, false );
+		wp_enqueue_script( $this->plugin_name, plugin_dir_path( __FILE__ ) . 'js/{plugin_name}-admin.js', array( 'jquery' ), $this->version, false );
 	}
 }
