@@ -1,1 +1,1 @@
-<h2>Ari is walking around here
+<h2>This {plugin_name}_action messing here</h2>
