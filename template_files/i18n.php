@@ -42,7 +42,7 @@ class i18n {
 		load_plugin_textdomain(
 			$this->plugin_name,
 			false,
-			plugin_dir_path() . 'languages/'
+			plugin_dir_path(__FILE__) . 'languages/'
 		);
 
 	}
