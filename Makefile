@@ -1,9 +1,11 @@
 clean:
 	rm -rf output
-	rm -rf template_files/lib/*
+	rm -rf template_files/lib
 	rm -rf tmp
 
-wp_mocker:
+prep:
+	mkdir "template_files/lib"
+wp_mocker: prep
 	mkdir tmp
 	cd tmp;\
 		git clone https://github.com/the-mast/wp_mocker.git;
