@@ -1,6 +1,7 @@
 #/bin/sh
 
 plugin_name="ari"
+description="some description"
 packge_name="Ari"
 link="www.thoughtworks.com"
 plugin_uri="www.thoughtworks.com/abc"
@@ -45,6 +46,7 @@ function do_subs() {
         sed -i ".author.bkp" s/"{author}"/"$author"/g "$sub_filename"
         sed -i ".author_uri.bkp" s/"{author_uri}"/"$author_uri"/g "$sub_filename"
         sed -i ".plugin_uri.bkp" s/"{plugin_uri}"/"$plugin_uri"/g "$sub_filename"
+        sed -i ".plugin_uri.bkp" s/"{description}"/"$description"/g "$sub_filename"
     done
 
     return 0
