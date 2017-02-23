@@ -1,5 +1,7 @@
 <?php
 
+namespace {plugin_name}_plugin;
+
 /**
  * Define the internationalization functionality
  *
@@ -40,11 +42,8 @@ class i18n {
 		load_plugin_textdomain(
 			$this->plugin_name,
 			false,
-			dirname( dirname( plugin_basename( __FILE__ ) ) ) . '/languages/'
+			plugin_dir_path() . 'languages/'
 		);
 
 	}
-
-
-
 }

@@ -35,7 +35,7 @@ function start_plugin() {
     register_deactivation_hook( __FILE__, "{plugin_name}_plugin\deactivate_plugin" );
 
     require_once plugin_dir_path( __FILE__ ) . "i18n.php";
-    $i18n = new \i18n($plugin_name);
+    $i18n = new i18n($plugin_name);
     add_action( "plugins_loaded", array( $i18n, "load_plugin_textdomain" ), 10, 1);
 
     //admin actions and filters
