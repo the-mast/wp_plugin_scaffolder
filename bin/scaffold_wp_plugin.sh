@@ -9,7 +9,7 @@ author="Brett"
 author_uri="www.thoughtworks.com"
 
 function get_template_dir() {
-    if [ -l "$1" ]; then
+    if [ -s "$1" ]; then
         echo "$(dirname $(dirname $(readlink "$1") ) )/template_files"
     else
         echo "$(dirname $(dirname "$1" ) )/template_files"
@@ -21,7 +21,7 @@ function get_plugin_dir() {
 }
 
 function make_plugin_dir() {
-    if [ -d "$plugin_dir" ]; then
+    if [ -d $plugin_dir ]; then
         echo "directory $plugin_name already exists";
         exit 1
     fi
@@ -95,7 +95,7 @@ function copy_template_files_to_plugin_dir() {
 }
 
 export plugin_dir="$(get_plugin_dir)"
-export template_dir="$(get_template_dir $0)"
+export template_dir="$(get_template_dir "$0" )"
 export current_dir="$(pwd)"
 
 echo "plugin_dir = $plugin_dir"
