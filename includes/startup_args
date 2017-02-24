@@ -27,4 +27,3 @@ export version_prompt_text="Please enter a version number for $plugin_name [defa
 export author_prompt_text="Please enter an author for $plugin_name {default]:"
 export author_uri_prompt_text=" Please enter an author URI for $plugin_name [default]:"
 
-echo $settings_list
