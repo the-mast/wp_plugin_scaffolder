@@ -95,6 +95,16 @@ function copy_template_files_to_plugin_dir() {
     cd "$current_dir"
 }
 
+function process_interactive_args() {
+    echo "not yet implemented"
+    exit 0
+}
+
+function process_noninteractive_args() {
+    echo "not yet implemented"
+    exit 0
+}
+
 export plugin_dir="$(pwd)/$plugin_name"
 export template_dir="$scaffold_path/template_files"
 export bin_dir="$scaffold_path/bin"
@@ -103,6 +113,18 @@ export current_dir="$(pwd)"
 
 source "$includes_dir/startup_args"
 
+case "$1" in
+    "-h" | "--help")
+        cat "$includes_dir/usage.txt"
+        exit 0
+        ;;
+    "-i")
+        process_interactive_args
+        ;;
+    *)
+        process_noninteractive_args
+        ;;
+esac
 plugin_name=`sed_esc $plugin_name`
 packge_name=`sed_esc $package_name`
 link=`sed_esc $link`
