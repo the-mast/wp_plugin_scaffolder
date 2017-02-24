@@ -9,13 +9,12 @@ version="1.0.0"
 author="Brett"
 author_uri="www.thoughtworks.com"
 
-function get_template_dir() {
-    if [ -s "$1" ]; then
-        echo "$(dirname $(dirname $(readlink "$1") ) )/template_files"
-    else
-        echo "$(dirname $(dirname "$1" ) )/template_files"
-    fi
-}
+if [ -L "$0" ]; then
+    export scaffold_path="$(dirname $(dirname $(readlink "$0") ) )"
+else
+    export scaffold_path="$(dirname $(dirname "$0" ) )"
+fi
+
 
 function get_plugin_dir() {
     echo "$(pwd)/$plugin_name"
@@ -96,13 +95,13 @@ function copy_template_files_to_plugin_dir() {
     cd "$current_dir"
 }
 
-export plugin_dir="$(get_plugin_dir)"
-export template_dir="$(get_template_dir "$0" )"
+export plugin_dir="$(pwd)/$plugin_name"
+export template_dir="$scaffold_path/template_files"
+export bin_dir="$scaffold_path/bin"
+export includes_dir="$scaffold_path/includes"
 export current_dir="$(pwd)"
 
-echo "plugin_dir = $plugin_dir"
-echo "template_dir = $template_dir"
-echo "current_dir = $current_dir"
+source "$includes_dir/startup_args"
 
 plugin_name=`sed_esc $plugin_name`
 packge_name=`sed_esc $package_name`
