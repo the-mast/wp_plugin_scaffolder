@@ -1,0 +1,31 @@
+Usage: scaffold_wp_plugin [options] [settings]
+
+Options can be either
+    -i Interactive
+    -h | --help Print this messages
+
+Settings is a list of key-value pairs of the form key=value. Below is a list of known keys.
+          NOTE!: 
+              1. If -i is specified no settings are required
+              2. If -i is not specified then the keys marked with a * are manditory
+
+    plugin_name*
+    description
+    packge_name
+    link
+    plugin_uri
+    version
+    author
+    author_uri
+
+
+Examples:
+    scaffold_wp_plugin -i
+
+    or
+    scaffold_wp_plugin plugin_name=myFirstPlugin author=John
+
+NOTES:
+    1.  plugin_name may NOT have any whitespace in the name.
+    2.  After successful execution a folder with the same name as plugin_name 
+        will be created in your current working directory
