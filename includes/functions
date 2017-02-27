@@ -1,10 +1,25 @@
+function validate_class_name() {
+    echo "not yet implemented"
+}
+
+function validate_input() {
+    for key in `echo "$settings_list"`; do
+        key=$(echo $key | cut -d "," -f1)
+        if [ "${!key}" == "" ]; then
+            echo "$key is not properly set"
+            cat "$includes_dir/usage.txt"
+            exit 1
+        fi
+    done
+}
+
 function get_plugin_dir() {
     echo "$(pwd)/$plugin_name"
 }
 
 function make_plugin_dir() {
-    if [ -d $plugin_dir ]; then
-        echo "directory $plugin_name already exists";
+    if [ -d "$plugin_dir" ]; then
+        echo "directory $plugin_dir already exists";
         exit 1
     fi
 
@@ -82,7 +97,39 @@ function process_interactive_args() {
     exit 0
 }
 
+function is_a_known_key() {
+    for key in `echo "$settings_list"`; do
+        key=$(echo $key | cut -d "," -f1)
+        if [ "$key" == "$1" ]; then
+            echo "true"
+            return 0
+        fi
+    done
+
+    echo "false"
+    return 1
+}
+
+function get_validation_function() {
+    for setting in `echo "$settings_list"`; do
+        key=$(echo $setting | cut -d "," -f1)
+        validation_function=$(echo $setting | cut -d "," -f3)
+        if [ "$key" == "$1" ]; then
+            echo "$validation_function"
+            return 0
+        fi
+    done
+
+    echo ""
+    return 1
+}
+
 function process_noninteractive_args() {
-    echo "not yet implemented"
-    exit 0
+    for setting in `echo "$1"`; do
+        key="$(echo $setting | cut -d "=" -f1)"
+        value="$(echo $setting | cut -d "=" -f2)"
+        if [ "$(is_a_known_key "$key")" == "true" ]; then
+            eval $key="$value"
+        fi
+    done
 }

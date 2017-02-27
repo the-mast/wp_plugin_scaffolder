@@ -1,6 +1,5 @@
-#/bin/sh
+#!/bin/sh
 
-plugin_name="ari"
 description="some description"
 packge_name="Ari"
 link="www.thoughtworks.com"
@@ -16,7 +15,7 @@ else
 fi
 
 
-export plugin_dir="$(pwd)/$plugin_name"
+export args="$@"
 export template_dir="$scaffold_path/template_files"
 export bin_dir="$scaffold_path/bin"
 export includes_dir="$scaffold_path/includes"
@@ -34,7 +33,7 @@ case "$1" in
         process_interactive_args
         ;;
     *)
-        process_noninteractive_args
+        process_noninteractive_args "$args"
         ;;
 esac
 plugin_name=`sed_esc $plugin_name`
@@ -45,6 +44,8 @@ version=`sed_esc $version`
 author=`sed_esc $author`
 author_uri=`sed_esc $author_uri`
 
+validate_input
+export plugin_dir="$(pwd)/$plugin_name"
 copy_template_files_to_plugin_dir
 fix_filenames
 do_subs

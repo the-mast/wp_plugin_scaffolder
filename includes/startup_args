@@ -1,7 +1,7 @@
 export plugin_name
 export plugin_name
 export description
-export packge_name
+export package_name
 export link
 export plugin_uri
 export version
@@ -9,18 +9,18 @@ export author
 export author_uri
 
 export settings_list="\
-    plugin_name*\
-    description\
-    packge_name\
-    link\
-    plugin_uri\
-    version\
-    author\
-    author_uri"
+    plugin_name,Y,valid_class_name\
+    description,N,\
+    package_name,N,\
+    link,N,\
+    plugin_uri,N,\
+    version,N,\
+    author,N,\
+    author_uri,N,"
 
 export plugin_name_prompt_text="Please enter a name for your plugin [default]:"
 export description_prompt_text="Please enter a short description describing $plugin_name [default]:"
-export packge_name_prompt_text="Please enter a preferred package name for $plugin_name [default]:"
+export package_name_prompt_text="Please enter a preferred package name for $plugin_name [default]:"
 export link_prompt_text="Please enter a link here [default]:"
 export plugin_uri_prompt_text="Please enter a URI to $plugin_name [default]:"
 export version_prompt_text="Please enter a version number for $plugin_name [default]:"
